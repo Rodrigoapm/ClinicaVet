@@ -36,7 +36,7 @@ class BaseDadosTest {
 
     @Before
     fun apagaBaseDados() {
-        appContext().deleteDatabase(BDclinicaOpenHelper.NOME)
+        appContext().deleteDatabase(BDCliinicaOpenHelper.NOME)
     }
 
     @Test
@@ -62,8 +62,8 @@ class BaseDadosTest {
     fun consegueInserirAnimal() {
         val db = getWritableDatabase()
 
-        val RACA = RACA("Cão Serra da ")
-        insereCategoria(db, categoria)
+        val RACA = RACA("Cão Serra da Estrela")
+        insereCliente(db, cliente)
 
         val livro = Livro("O Leão que Temos Cá Dentro", "Rachel Bright", categoria.id)
         insereLivro(db, livro)

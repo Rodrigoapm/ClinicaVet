@@ -14,7 +14,7 @@ class BDLivrosOpenHelper(context: Context?) : SQLiteOpenHelper(context, NOME, nu
     override fun onCreate(db: SQLiteDatabase?) {
         requireNotNull(db)
 
-        TabelaBD(db).cria()
+
         TabelaBDClientes(db).cria()
         TabelaBDAnimal(db).cria()
     }

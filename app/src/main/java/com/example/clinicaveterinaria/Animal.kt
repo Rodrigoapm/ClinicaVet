@@ -3,17 +3,17 @@ package com.example.clinicaveterinaria
 import android.content.ContentValues
 
 class Animal(
-    var id: Long,
-    var titulo : String,
-    var autor: String,
-    var idCategoria: Long
+    var Clienteid: Long,
+    var nome : String,
+    var raca: String,
+    var idCliente: Long
 ) {
     fun toContentValues() : ContentValues {
         val valores = ContentValues()
 
-        valores.put(TabelaBDAnimal.CAMPO_RACA, RACA)
-        valores.put(TabelaBDAnimal.CAMPO_NOME, NOME)
-        valores.put(TabelaBDAnimal.CAMPO_CLIENTE_ID, IDCLIENTE)
+        valores.put(TabelaBDAnimal.CAMPO_RACA, raca)
+        valores.put(TabelaBDAnimal.CAMPO_NOME, nome)
+        valores.put(TabelaBDAnimal.CAMPO_CLIENTE_ID, idCliente)
 
         return valores
     }
