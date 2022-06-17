@@ -4,7 +4,7 @@ import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 
-class BDLivrosOpenHelper(context: Context?) : SQLiteOpenHelper(context, NOME, null, VERSAO) {
+class BDclinicaOpenHelper(context: Context?) : SQLiteOpenHelper(context, NOME, null, VERSAO) {
     /**
      * Called when the database is created for the first time. This is where the
      * creation of tables and the initial population of the tables should happen.
@@ -15,7 +15,7 @@ class BDLivrosOpenHelper(context: Context?) : SQLiteOpenHelper(context, NOME, nu
         requireNotNull(db)
 
 
-        TabelaBDClientes(db).cria()
+        TabelaBDCliente(db).cria()
         TabelaBDAnimal(db).cria()
     }
 
@@ -47,7 +47,7 @@ class BDLivrosOpenHelper(context: Context?) : SQLiteOpenHelper(context, NOME, nu
     }
 
     companion object {
-        const val NOME = "trabalhofinal.db"
+        const val NOME = "ClinicaVeterinaria.db"
         private const val VERSAO = 1
     }
 }
