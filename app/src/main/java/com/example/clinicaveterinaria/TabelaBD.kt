@@ -3,7 +3,7 @@ package com.example.clinicaveterinaria
 import android.content.ContentValues
 import android.database.sqlite.SQLiteDatabase
 
-abstract class TabelaBD(val db: SQLiteDatabase, val nome: String) {
+abstract class TabelaBD (val db: SQLiteDatabase, val nome: String) {
     abstract fun cria()
 
     fun insert(values: ContentValues) =
@@ -15,6 +15,6 @@ abstract class TabelaBD(val db: SQLiteDatabase, val nome: String) {
     fun delete(whereClause: String, whereArgs: Array<String>) =
         db.delete(nome, whereClause, whereArgs)
 
-    fun query(columns: Array<String>, selection: String, selectionArgs: Array<String>, groupBy: String, having: String, orderBy: String) =
+    fun query(columns: Array<String>, selection: String?, selectionArgs: Array<String>?, groupBy: String?, having: String?, orderBy: String?) =
         db.query(nome, columns, selection, selectionArgs, groupBy, having, orderBy)
 }

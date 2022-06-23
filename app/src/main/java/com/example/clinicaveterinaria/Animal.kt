@@ -3,10 +3,10 @@ package com.example.clinicaveterinaria
 import android.content.ContentValues
 
 class Animal(
-    var Clienteid: Long,
     var nome : String,
     var raca: String,
-    var idCliente: Long
+    var idAnimal: Long,
+    var idCliente: Long,
 ) {
     fun toContentValues() : ContentValues {
         val valores = ContentValues()
