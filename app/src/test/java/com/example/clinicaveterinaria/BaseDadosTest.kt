@@ -2,8 +2,8 @@ package com.example.clinicaveterinaria
 
 import android.database.sqlite.SQLiteDatabase
 import android.provider.BaseColumns
-import androidx.test.ext.junit.runners.AndroidJUnit4
-import org.junit.Assert
+import androidx.test.platform.app.InstrumentationRegistry
+import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -20,12 +20,12 @@ class BaseDadosTest {
 
     private fun insereClientes(db: SQLiteDatabase, cliente: Clientes) {
         cliente.id = TabelaBDCliente(db).insert(cliente.toContentValues())
-        Assert.assertNotEquals(-1, cliente.id)
+        assertNotEquals(-1, cliente.id)
     }
 
     private fun insereAnimal(db: SQLiteDatabase, Animal: Animal) {
         Animal.id = TabelaBDAnimal(db).insert(Animal.toContentValues())
-        Assert.assertNotEquals(-1, Animal.id)
+        assertNotEquals(-1, Animal.id)
     }
 
     @Before
@@ -38,7 +38,7 @@ class BaseDadosTest {
         val openHelper = BDclinicaOpenHelper(appContext())
         val db = openHelper.readableDatabase
 
-        Assert.assertTrue(db.isOpen)
+        assertTrue(db.isOpen)
 
         db.close()
     }
@@ -47,20 +47,20 @@ class BaseDadosTest {
     fun consegueInserirCliente() {
         val db = getWritableDatabase()
 
-        insereClientes(db, Clientes("Rodrigo Martins "))
+        insereClientes(db, Clientes("Rodrigo Martins", "24", "123456778", "9111111111"))
 
         db.close()
     }
 
 
-    fun consegueInserirCarro() {
+    fun consegueInserirAnimal() {
         val db = getWritableDatabase()
 
-        val Cliente = Clientes("Rodrigo Martins")
+        val Cliente = Clientes("Rodrigo Martins", "24,", "123456778", "911111111")
         insereClientes(db, Cliente )
 
-        val Carro = Animal("Boby", "Pastor alemão", "1","1")
-        insereClientes(db, Cliente);
+        val Animal = Animal("Boby", "Pastor alemão")
+        insereClientes(db, Animal);
 
         db.close()
     }
@@ -71,7 +71,7 @@ class BaseDadosTest {
     fun consegueAlterarCliente() {
         val db = getWritableDatabase()
 
-        val cliente = Clientes("Teste")
+        val cliente = Clientes("Teste", "teste", "teste", "teste")
         insereClientes(db, cliente)
 
         cliente.nome = "Rodrigo Pires"
@@ -81,7 +81,7 @@ class BaseDadosTest {
             "${BaseColumns._ID}=?",
             arrayOf("${cliente.id}"))
 
-        Assert.assertEquals(1, registosAlterados)
+        assertEquals(1, registosAlterados)
 
         db.close()
     }
@@ -89,14 +89,14 @@ class BaseDadosTest {
     fun consegueEliminarCliente() {
         val db = getWritableDatabase()
 
-        val Cliente = Cliente("Rui Condess")
+        val Cliente = Clientes("Rodrigo Martins", "24", "123456778", "9111111111")
         insereClientes(db, Cliente)
 
         val registosEliminados = TabelaBDCliente(db).delete(
             "${BaseColumns._ID}=?",
             arrayOf("${Cliente.id}"))
 
-        Assert.assertEquals(1, registosEliminados)
+        assertEquals(1, registosEliminados)
 
         db.close()
     }
@@ -104,14 +104,14 @@ class BaseDadosTest {
     fun consegueEliminarClientes() {
         val db = getWritableDatabase()
 
-        val Clientes = Clientes("Rodrigo Martins", "24, nif: 123456789")
+        val Clientes = Clientes("Rodrigo Martins", "24", "1234565778", "911111111")
         insereClientes(db, Clientes)
 
         val registosEliminados = TabelaBDCliente(db).delete(
             "${BaseColumns._ID}=?",
             arrayOf("${Clientes.id}"))
 
-        Assert.assertEquals(1, registosEliminados)
+        assertEquals(1, registosEliminados)
 
         db.close()
     }
@@ -131,12 +131,12 @@ class BaseDadosTest {
             null
         )
 
-        Assert.assertEquals(1, cursor.count)
-        Assert.assertTrue(cursor.moveToNext())
+        assertEquals(1, cursor.count)
+        assertTrue(cursor.moveToNext())
 
         val clienteBD = Clientes.fromCursor(cursor)
 
-        Assert.assertEquals(cliente, clienteBD)
+        assertEquals(cliente, clienteBD)
 
         db.close()
     }

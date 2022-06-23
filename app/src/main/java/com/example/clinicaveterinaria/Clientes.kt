@@ -4,7 +4,7 @@ import android.content.ContentValues
 import android.database.Cursor
 import android.provider.BaseColumns
 
-data class Clientes(var nome: String, var idade: String, var id: Long = -1) {
+data class Clientes(var nome: String, var idade: String, var nif, var contacto, var id: Long = -1) {
     fun toContentValues() : ContentValues {
         val valores = ContentValues()
         valores.put(TabelaBDCliente.CAMPO_NOME, nome)
